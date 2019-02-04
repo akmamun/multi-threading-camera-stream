@@ -1,4 +1,4 @@
-## Live Streaming using Multi-threading 
+### Camera streaming(Open-CV + Flask) and display on different threads with safe synchronization
 ```python
 pip install requirements.txt
 
@@ -35,12 +35,17 @@ cv2.imencode('.jpg', frame)[1].tobytes()
 
 ```   
 #### Display the resulting frame in window
-##### Instead of return use this in [camera.py](/camera.py)
+##### Write this end of the line [camera.py](/camera.py)
 ```python
-cv2.imshow('frame', frame)
-if cv2.waitKey(1) & 0xFF == ord('q'):
-       break
-            
+if __name__ == "__main__" :
+    cap = CameraStream().start()
+    while True :
+        frame = cap.read()
+        cv2.imshow('webcam', frame)
+        if cv2.waitKey(1) == 27 :
+            break
+    cap.stop()
+    cv2.destroyAllWindows()      
 ``` 
 #### Credit
- - https://gist.github.com/allskyee/7749b9318e914ca45eb0a1000a81bf56
+ - Multi Thread Use From [allskyee's](https://github.com/allskyee)  [Open-CV Multi-Thread Gist](https://gist.github.com/allskyee/7749b9318e914ca45eb0a1000a81bf56)
