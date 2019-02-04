@@ -13,6 +13,7 @@ class CameraStream(object):
     def start(self):
         if self.started:
             print("already started!!")
+            return None
         self.started = True
         self.thread = Thread(target=self.update, args=())
         self.thread.start()

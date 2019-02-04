@@ -1,4 +1,4 @@
-## Multithreading Live Streaming with OpenCV
+## Live Streaming using Multi-threading 
 ```python
 pip install requirements.txt
 
@@ -42,6 +42,5 @@ if cv2.waitKey(1) & 0xFF == ord('q'):
        break
             
 ``` 
- ## Credit
- Learn More about Streaming with flask
- - https://blog.miguelgrinberg.com/post/video-streaming-with-flask
+#### Credit
+ - https://gist.github.com/allskyee/7749b9318e914ca45eb0a1000a81bf56
