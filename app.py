@@ -3,6 +3,8 @@ from camera import CameraStream
 import cv2
 app = Flask(__name__)
 
+cap = CameraStream().start()
+
 
 @app.route('/')
 def index():
@@ -12,8 +14,7 @@ def index():
 
 def gen_frame():
     """Video streaming generator function."""
-    cap = CameraStream().start()
-    while True:
+    while cap:
         frame = cap.read()
         convert = cv2.imencode('.jpg', frame)[1].tobytes()
         yield (b'--frame\r\n'

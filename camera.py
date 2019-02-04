@@ -13,13 +13,10 @@ class CameraStream(object):
     def start(self):
         if self.started:
             print("already started!!")
-            (self.grabbed, self.frame) = self.stream.read()
-
         self.started = True
         self.thread = Thread(target=self.update, args=())
         self.thread.start()
         return self
-
 
     def update(self):
         while self.started:
@@ -27,7 +24,6 @@ class CameraStream(object):
             self.read_lock.acquire()
             self.grabbed, self.frame = grabbed, frame
             self.read_lock.release()
-
 
     def read(self):
         self.read_lock.acquire()
